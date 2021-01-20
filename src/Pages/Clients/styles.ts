@@ -12,6 +12,10 @@ export const Container = styled.main`
     margin-bottom: 2rem;
   }
 
+  fieldset {
+    padding: 5px;
+  }
+
   form {
     input {
       margin: 10px;
