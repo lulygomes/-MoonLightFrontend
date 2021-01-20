@@ -1,11 +1,33 @@
 /* eslint-disable react/button-has-type */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+
+import { promises } from 'dns';
+import api from '../../services/api';
 
 import Header from '../../Components/Header';
 
-import { Container } from './styles';
+import { Container, List } from './styles';
+
+interface CustomerData {
+  id: string;
+  name: string;
+  phone: string;
+  cpf: string;
+  address: string;
+}
 
 const Clients: React.FC = () => {
+  const [customers, setCustomers] = useState<CustomerData[]>([]);
+
+  useEffect(() => {
+    api
+      .get('customers')
+      .then(response => {
+        setCustomers(response.data);
+      })
+      .catch(err => console.log(err));
+  }, []);
+
   return (
     <>
       <Header />
@@ -29,6 +51,36 @@ const Clients: React.FC = () => {
             </button>
           </form>
         </fieldset>
+        <hr />
+        <List>
+          <h2>Lista de Clientes</h2>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Telefone</th>
+                <th>CPF</th>
+                <th>Endereço</th>
+                <th>Opções</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {customers.map(customer => {
+                return (
+                  <tr key={customer.id}>
+                    <td>{customer.name}</td>
+                    <td>{customer.phone}</td>
+                    <td>{customer.cpf}</td>
+                    <td>{customer.address}</td>
+                    <td> -options- </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </List>
       </Container>
     </>
   );
