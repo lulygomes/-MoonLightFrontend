@@ -1,9 +1,13 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 
 import { Modal, Container, ActionButton } from './styles';
 
-const ModalAddCustomer: React.FC = () => {
+interface ModalData {
+  closeModal: Dispatch<SetStateAction<boolean>>;
+}
+
+const ModalAddCustomer: React.FC<ModalData> = ({ closeModal }) => {
   return (
     <Modal>
       <Container>
@@ -15,7 +19,11 @@ const ModalAddCustomer: React.FC = () => {
           <input type="text" placeholder="Endereço completo" />
 
           <ActionButton>
-            <button type="button" className="button cancel">
+            <button
+              type="button"
+              onClick={() => closeModal(false)}
+              className="button cancel"
+            >
               Cancelar
             </button>
             <button type="submit" className="button save">

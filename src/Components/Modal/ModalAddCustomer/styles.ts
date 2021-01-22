@@ -25,6 +25,11 @@ export const Container = styled.div`
 
   border-radius: 8px;
 
+  @media (max-width: 800px) {
+    width: 350px;
+    height: 400px;
+  }
+
   h2 {
     padding: 10px;
   }
@@ -33,12 +38,51 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 
     input {
-      width: 80%;
+      width: 90%;
+      border: none;
+      border-radius: 0.25rem;
+
+      padding: 16px;
     }
   }
 `;
 
-export const ActionButton = styled.div``;
+export const ActionButton = styled.div`
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+
+  width: 90%;
+
+  .button.cancel {
+    color: rgba(255, 50, 50, 0.8);
+    border: 1px solid rgba(255, 50, 50, 0.8);
+    border-radius: 0.25rem;
+
+    padding: 1rem;
+    background: transparent;
+  }
+  .button.cancel:hover {
+    color: rgba(255, 50, 50, 1);
+    border: 1px solid rgba(255, 50, 50, 1);
+  }
+
+  .button.save {
+    color: #f5f5f5;
+    border: 1px solid rgba(50, 255, 50, 0.8);
+    border-radius: 0.25rem;
+
+    padding: 1rem;
+    width: 7rem;
+
+    background: rgba(50, 255, 50, 0.8);
+  }
+
+  button.button.save:hover {
+    background: rgba(50, 255, 50, 1);
+    border: 1px solid rgba(50, 255, 50, 1);
+  }
+`;

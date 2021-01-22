@@ -34,27 +34,9 @@ const Clients: React.FC = () => {
       <Header />
       <Container>
         <h1>Clientes</h1>
-        <button onClick={() => setIsModalOpen(true)}>Abrir modal</button>
-        {isModalOpen && <ModalAddCustomer />}
+        <button onClick={() => setIsModalOpen(true)}>Cadastro</button>
+        {isModalOpen && <ModalAddCustomer closeModal={setIsModalOpen} />}
 
-        <fieldset>
-          <legend>Cadastro de Clientes</legend>
-
-          <form>
-            <input type="text" placeholder="Nome" />
-            <input type="text" placeholder="Telefone com DDD" />
-            <input type="text" placeholder="CPF" />
-            <input type="text" placeholder="Endereço completo" />
-
-            <button id="submit" type="submit">
-              Salvar
-            </button>
-            <button id="reset" type="reset">
-              Cancelar
-            </button>
-          </form>
-        </fieldset>
-        <hr />
         <List>
           <h2>Lista de Clientes</h2>
 
