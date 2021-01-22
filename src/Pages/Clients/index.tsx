@@ -1,10 +1,10 @@
 /* eslint-disable react/button-has-type */
 import React, { useEffect, useState } from 'react';
 
-import { promises } from 'dns';
 import api from '../../services/api';
 
 import Header from '../../Components/Header';
+import ModalAddCustomer from '../../Components/Modal/ModalAddCustomer';
 
 import { Container, List } from './styles';
 
@@ -18,6 +18,7 @@ interface CustomerData {
 
 const Clients: React.FC = () => {
   const [customers, setCustomers] = useState<CustomerData[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     api
@@ -33,6 +34,8 @@ const Clients: React.FC = () => {
       <Header />
       <Container>
         <h1>Clientes</h1>
+        <button onClick={() => setIsModalOpen(true)}>Abrir modal</button>
+        {isModalOpen && <ModalAddCustomer />}
 
         <fieldset>
           <legend>Cadastro de Clientes</legend>
