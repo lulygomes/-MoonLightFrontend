@@ -1,10 +1,15 @@
 import styled from 'styled-components';
 
 export const Container = styled.main`
-  margin: 2rem 4rem auto;
+  margin: 2rem 4rem 1rem;
   padding: 18px;
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.2);
+
+  @media (max-width: 800px) {
+    margin: 0.2rem 0.4rem 1rem;
+    padding: 8px;
+  }
 
   h1 {
     padding: 1rem 0 3rem;
@@ -55,11 +60,47 @@ export const Container = styled.main`
 `;
 
 export const List = styled.div`
-  margin-top: 2rem;
+  margin: 2rem 0;
+  align-self: center;
 
   h2 {
+    margin-left: 10px;
     font-size: 2rem;
     font-weight: 300;
     letter-spacing: 1.5px;
+  }
+
+  table {
+    margin: 15px auto;
+    width: 90%;
+    border-spacing: 0 1rem;
+
+    thead {
+      padding: 10px;
+      background: rgba(0, 0, 0, 0.1);
+
+      tr {
+      }
+
+      th {
+        padding: 10px;
+      }
+    }
+
+    tbody {
+      tr {
+        transition: all 0.5s ease 0.01s;
+
+        &:hover {
+          background: #f4f4f4;
+          color: #222;
+        }
+      }
+      td {
+        text-align: center;
+        padding: 8px;
+        margin: 8px auto;
+      }
+    }
   }
 `;
