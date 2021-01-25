@@ -17,7 +17,7 @@ export const Modal = styled.div`
 `;
 
 export const Container = styled.div`
-  background-color: #f5f5f5;
+  background-color: #ddd;
   color: #333;
   width: 70%;
   height: 60%;

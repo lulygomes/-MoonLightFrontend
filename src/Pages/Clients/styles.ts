@@ -54,7 +54,6 @@ export const Container = styled.main`
 `;
 
 export const MainHeader = styled.header`
-  background: tomato;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -63,6 +62,20 @@ export const MainHeader = styled.header`
     padding: 1rem 0 3rem;
     letter-spacing: 2px;
     font-size: 3rem;
+  }
+
+  button.addCustomer {
+    margin-right: 18px;
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-radius: 50px;
+    background: rgba(50, 255, 50, 0.8);
+    transition: all 0.2s;
+
+    &:hover {
+      background: rgba(50, 255, 50, 1);
+    }
   }
 `;
 

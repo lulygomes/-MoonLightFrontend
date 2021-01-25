@@ -1,5 +1,6 @@
 /* eslint-disable react/button-has-type */
 import React, { useEffect, useState } from 'react';
+import { FiUserPlus } from 'react-icons/fi';
 
 import api from '../../services/api';
 
@@ -36,7 +37,7 @@ const Clients: React.FC = () => {
         <MainHeader>
           <h1>Clientes</h1>
           <button className="addCustomer" onClick={() => setIsModalOpen(true)}>
-            Cadastro
+            <FiUserPlus size={30} />
           </button>
         </MainHeader>
         {isModalOpen && <ModalAddCustomer closeModal={setIsModalOpen} />}

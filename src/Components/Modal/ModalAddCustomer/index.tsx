@@ -11,7 +11,7 @@ const ModalAddCustomer: React.FC<ModalData> = ({ closeModal }) => {
   return (
     <Modal>
       <Container>
-        <h2>Cadastrar de cliente</h2>
+        <h2>Cadastro de cliente</h2>
         <form action="">
           <input type="text" placeholder="Nome" />
           <input type="text" placeholder="Telefone com DDD" />
