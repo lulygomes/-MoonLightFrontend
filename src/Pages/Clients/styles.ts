@@ -11,12 +11,6 @@ export const Container = styled.main`
     padding: 8px;
   }
 
-  h1 {
-    padding: 1rem 0 3rem;
-    letter-spacing: 2px;
-    font-size: 3rem;
-  }
-
   fieldset {
     padding: 5px;
 
@@ -56,6 +50,19 @@ export const Container = styled.main`
     background: #f52121;
     font-size: 18px;
     font-weight: 500;
+  }
+`;
+
+export const MainHeader = styled.header`
+  background: tomato;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h1 {
+    padding: 1rem 0 3rem;
+    letter-spacing: 2px;
+    font-size: 3rem;
   }
 `;
 

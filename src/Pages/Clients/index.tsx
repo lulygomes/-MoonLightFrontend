@@ -6,7 +6,7 @@ import api from '../../services/api';
 import Header from '../../Components/Header';
 import ModalAddCustomer from '../../Components/Modal/ModalAddCustomer';
 
-import { Container, List } from './styles';
+import { Container, List, MainHeader } from './styles';
 
 interface CustomerData {
   id: string;
@@ -33,8 +33,12 @@ const Clients: React.FC = () => {
     <>
       <Header />
       <Container>
-        <h1>Clientes</h1>
-        <button onClick={() => setIsModalOpen(true)}>Cadastro</button>
+        <MainHeader>
+          <h1>Clientes</h1>
+          <button className="addCustomer" onClick={() => setIsModalOpen(true)}>
+            Cadastro
+          </button>
+        </MainHeader>
         {isModalOpen && <ModalAddCustomer closeModal={setIsModalOpen} />}
 
         <List>
