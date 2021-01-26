@@ -1,4 +1,13 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const appearFromRight = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
 
 export const Modal = styled.div`
   width: 100%;
@@ -14,23 +23,25 @@ export const Modal = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  animation: ${appearFromRight} 1s;
 `;
 
 export const Container = styled.div`
+  transition: all 1s;
   background-color: #ddd;
   color: #333;
   width: 70%;
-  height: 60%;
   text-align: center;
 
   border-radius: 8px;
 
   @media (max-width: 800px) {
     width: 350px;
-    height: 400px;
   }
 
   h2 {
+    margin: 20px 0;
     padding: 10px;
   }
 
@@ -38,14 +49,9 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
 
-    input {
-      width: 90%;
-      border: none;
-      border-radius: 0.25rem;
-
-      padding: 16px;
+    & div:last-child {
+      margin: 20px;
     }
   }
 `;

@@ -1,5 +1,9 @@
 /* eslint-disable react/prop-types */
 import React, { Dispatch, SetStateAction } from 'react';
+import { Form } from '@unform/web';
+import { FiCreditCard, FiHome, FiPhone, FiUser } from 'react-icons/fi';
+
+import Input from '../../Input';
 
 import { Modal, Container, ActionButton } from './styles';
 
@@ -8,15 +12,29 @@ interface ModalData {
 }
 
 const ModalAddCustomer: React.FC<ModalData> = ({ closeModal }) => {
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  function handleSubmit(data: object): void {
+    console.log(data);
+  }
   return (
     <Modal>
       <Container>
         <h2>Cadastro de cliente</h2>
-        <form action="">
-          <input type="text" placeholder="Nome" />
-          <input type="text" placeholder="Telefone com DDD" />
-          <input type="text" placeholder="CPF" />
-          <input type="text" placeholder="Endereço completo" />
+        <Form onSubmit={handleSubmit} action="">
+          <Input name="name" icon={FiUser} type="text" placeholder="Nome" />
+          <Input
+            name="phone"
+            icon={FiPhone}
+            type="text"
+            placeholder="Telefone com DDD"
+          />
+          <Input name="cpf" icon={FiCreditCard} type="text" placeholder="CPF" />
+          <Input
+            name="address"
+            icon={FiHome}
+            type="text"
+            placeholder="Endereço completo"
+          />
 
           <ActionButton>
             <button
@@ -30,7 +48,7 @@ const ModalAddCustomer: React.FC<ModalData> = ({ closeModal }) => {
               Salvar
             </button>
           </ActionButton>
-        </form>
+        </Form>
       </Container>
     </Modal>
   );
