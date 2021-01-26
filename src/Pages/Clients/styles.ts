@@ -86,7 +86,7 @@ export const List = styled.div`
       }
 
       th {
-        padding: 10px;
+        padding: 8px;
       }
     }
 
@@ -101,8 +101,8 @@ export const List = styled.div`
       }
       td {
         text-align: center;
-        padding: 8px;
-        margin: 8px auto;
+        padding: 4px;
+        margin: 4px auto;
       }
     }
 
