@@ -96,7 +96,7 @@ const Clients: React.FC = () => {
                         id="editCustomer"
                         size={15}
                         title="Editar"
-                        onClick={() => handleEditCustomer(customer.id)}
+                        onClick={() => handleEditCustomer(customer.cpf)}
                       />
                       <FiXCircle
                         id="deleteCustomer"

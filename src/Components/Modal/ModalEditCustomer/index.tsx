@@ -20,6 +20,7 @@ interface ModalData {
 }
 
 interface CustomerData {
+  id: string;
   name: string;
   cpf: string;
   phone: string;
@@ -28,25 +29,37 @@ interface CustomerData {
 
 const ModalAddCustomer: React.FC<ModalData> = ({ closeModal, customerId }) => {
   const [customer, setCustomer] = useState<CustomerData>({} as CustomerData);
-
   useEffect(() => {
     api
-      .get(`customer/${customerId}`)
-      .then(response => setCustomer(response.data))
+      .get(`customers/${customerId}`)
+      .then(response => {
+        setCustomer(response.data);
+      })
       .catch(err => console.log(err));
   }, [customerId]);
 
-  const handleSubmit = useCallback(async () => {
-    //   await api.post('customers', data);
+  const handleSubmit = useCallback(
+    async data => {
+      try {
+        const { name, phone, cpf, address } = data;
 
-    closeModal(false);
-  }, [closeModal]);
+        const formData = { id: customer.id, name, phone, cpf, address };
+
+        await api.put('customers', formData);
+
+        closeModal(false);
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    [closeModal, customer.id],
+  );
 
   return (
     <Modal>
       <Container>
         <h2>Atualizar dados do cliente</h2>
-        <Form onSubmit={handleSubmit} action="">
+        <Form initialData={customer} onSubmit={handleSubmit} action="">
           <Input name="name" icon={FiUser} type="text" placeholder="Nome" />
           <Input
             name="phone"
