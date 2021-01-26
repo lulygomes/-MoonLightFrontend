@@ -11,23 +11,6 @@ export const Container = styled.main`
     padding: 8px;
   }
 
-  fieldset {
-    padding: 5px;
-
-    legend {
-      font-size: 2rem;
-      font-weight: 300;
-      letter-spacing: 1.5px;
-    }
-  }
-
-  form {
-    input {
-      margin: 10px;
-      padding: 5px;
-    }
-  }
-
   button#submit {
     border: none;
     border-radius: 5px;
@@ -120,6 +103,49 @@ export const List = styled.div`
         text-align: center;
         padding: 8px;
         margin: 8px auto;
+      }
+    }
+
+    .tdOptions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #editCustomer {
+      background: rgb(255, 165, 0, 0.8);
+      padding: 5px;
+      width: 35px;
+      height: 35px;
+      margin-right: 8px;
+
+      border-radius: 10px;
+
+      transition: all 0.2s;
+
+      &:hover {
+        cursor: pointer;
+        background: rgb(255, 165, 0, 1);
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    #deleteCustomer {
+      background: rgb(255, 0, 0, 0.8);
+      padding: 5px;
+      width: 35px;
+      height: 35px;
+
+      border-radius: 10px;
+
+      transition: all 0.2s;
+
+      &:hover {
+        cursor: pointer;
+        background: rgb(255, 0, 0, 1);
+        width: 40px;
+        height: 40px;
       }
     }
   }

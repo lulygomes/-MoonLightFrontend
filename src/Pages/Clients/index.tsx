@@ -1,11 +1,12 @@
 /* eslint-disable react/button-has-type */
-import React, { useEffect, useState } from 'react';
-import { FiUserPlus } from 'react-icons/fi';
+import React, { useCallback, useEffect, useState } from 'react';
+import { FiEdit3, FiUserPlus, FiXCircle } from 'react-icons/fi';
 
 import api from '../../services/api';
 
 import Header from '../../Components/Header';
 import ModalAddCustomer from '../../Components/Modal/ModalAddCustomer';
+import ModalEditCustomer from '../../Components/Modal/ModalEditCustomer';
 
 import { Container, List, MainHeader } from './styles';
 
@@ -19,7 +20,9 @@ interface CustomerData {
 
 const Clients: React.FC = () => {
   const [customers, setCustomers] = useState<CustomerData[]>([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalAddCustomerOpen, setIsModalAddCustomerOpen] = useState(false);
+  const [isModalEditCustomerOpen, setIsModalEditCustomerOpen] = useState(false);
+  const [customerIdToEdit, setCustomerIdToEdit] = useState('');
 
   useEffect(() => {
     api
@@ -30,17 +33,41 @@ const Clients: React.FC = () => {
       .catch(err => console.log(err));
   }, []);
 
+  const handleDeleteCustomer = useCallback(
+    async (id: string) => {
+      await api.delete(`customers/${id}`);
+      setCustomers(customers.filter(customer => customer.id !== id));
+    },
+    [customers],
+  );
+
+  const handleEditCustomer = useCallback((id: string) => {
+    setCustomerIdToEdit(id);
+    setIsModalEditCustomerOpen(true);
+  }, []);
+
   return (
     <>
       <Header />
       <Container>
         <MainHeader>
           <h1>Clientes</h1>
-          <button className="addCustomer" onClick={() => setIsModalOpen(true)}>
+          <button
+            className="addCustomer"
+            onClick={() => setIsModalAddCustomerOpen(true)}
+          >
             <FiUserPlus size={30} />
           </button>
         </MainHeader>
-        {isModalOpen && <ModalAddCustomer closeModal={setIsModalOpen} />}
+        {isModalAddCustomerOpen && (
+          <ModalAddCustomer closeModal={setIsModalAddCustomerOpen} />
+        )}
+        {isModalEditCustomerOpen && (
+          <ModalEditCustomer
+            customerId={customerIdToEdit}
+            closeModal={setIsModalEditCustomerOpen}
+          />
+        )}
 
         <List>
           <h2>Lista de Clientes</h2>
@@ -64,7 +91,20 @@ const Clients: React.FC = () => {
                     <td>{customer.phone}</td>
                     <td>{customer.cpf}</td>
                     <td>{customer.address}</td>
-                    <td> -options- </td>
+                    <td className="tdOptions">
+                      <FiEdit3
+                        id="editCustomer"
+                        size={15}
+                        title="Editar"
+                        onClick={() => handleEditCustomer(customer.id)}
+                      />
+                      <FiXCircle
+                        id="deleteCustomer"
+                        size={15}
+                        title="Excluir"
+                        onClick={() => handleDeleteCustomer(customer.id)}
+                      />
+                    </td>
                   </tr>
                 );
               })}

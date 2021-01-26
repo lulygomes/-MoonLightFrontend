@@ -4,7 +4,7 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   margin: 0;
-  padding: 4px;
+  padding: 16px;
   width: 90%;
   background: white;
   border-radius: 10px;
