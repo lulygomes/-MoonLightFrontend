@@ -2,8 +2,10 @@
 import React, { Dispatch, SetStateAction, useCallback } from 'react';
 import { Form } from '@unform/web';
 import { FiCreditCard, FiHome, FiPhone, FiUser } from 'react-icons/fi';
+
 import api from '../../../services/api';
 
+import { useToast } from '../../../hooks/toast';
 import Input from '../../Input';
 
 import { Modal, Container, ActionButton } from './styles';
@@ -32,15 +34,31 @@ const ModalAddCustomer: React.FC<ModalData> = ({
   closeModal,
   setCustomers,
 }) => {
-  // eslint-disable-next-line @typescript-eslint/ban-types
+  const { addToast } = useToast();
+
   const handleSubmit = useCallback(
     async (data: CustomerData) => {
-      const response = await api.post('customers', data);
+      try {
+        const response = await api.post('customers', data);
 
-      setCustomers(current => [...current, response.data]);
-      closeModal(false);
+        addToast({
+          type: 'success',
+          title: 'Cliente cadastrado com sucesso!',
+        });
+
+        setCustomers(current => [...current, response.data]);
+        closeModal(false);
+      } catch {
+        addToast({
+          type: 'error',
+          title: 'Falha no cadastro',
+          description:
+            'Falha ao tentar cadastra um novo cliente, tente novamente.',
+        });
+        closeModal(false);
+      }
     },
-    [closeModal, setCustomers],
+    [addToast, closeModal, setCustomers],
   );
 
   return (
