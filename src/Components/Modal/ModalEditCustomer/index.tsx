@@ -17,6 +17,7 @@ import { Modal, Container, ActionButton } from './styles';
 interface ModalData {
   closeModal: Dispatch<SetStateAction<boolean>>;
   customerId: string;
+  setCustomers: React.Dispatch<React.SetStateAction<CustomerData[]>>;
 }
 
 interface CustomerData {
@@ -27,7 +28,11 @@ interface CustomerData {
   address: string;
 }
 
-const ModalAddCustomer: React.FC<ModalData> = ({ closeModal, customerId }) => {
+const ModalAddCustomer: React.FC<ModalData> = ({
+  closeModal,
+  customerId,
+  setCustomers,
+}) => {
   const [customer, setCustomer] = useState<CustomerData>({} as CustomerData);
   useEffect(() => {
     api
@@ -45,8 +50,17 @@ const ModalAddCustomer: React.FC<ModalData> = ({ closeModal, customerId }) => {
 
         const formData = { id: customer.id, name, phone, cpf, address };
 
-        await api.put('customers', formData);
+        const response = await api.put('customers', formData);
+        const customerUpdated = response.data;
 
+        setCustomers(current =>
+          current.map(c => {
+            if (c.id === customerUpdated.id) {
+              return customerUpdated;
+            }
+            return c;
+          }),
+        );
         closeModal(false);
       } catch (err) {
         console.log(err);

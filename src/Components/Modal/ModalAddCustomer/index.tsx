@@ -8,8 +8,17 @@ import Input from '../../Input';
 
 import { Modal, Container, ActionButton } from './styles';
 
+interface CustomerData {
+  id: string;
+  name: string;
+  phone: string;
+  cpf: string;
+  address: string;
+}
+
 interface ModalData {
   closeModal: Dispatch<SetStateAction<boolean>>;
+  setCustomers: React.Dispatch<React.SetStateAction<CustomerData[]>>;
 }
 
 interface CustomerData {
@@ -19,15 +28,19 @@ interface CustomerData {
   address: string;
 }
 
-const ModalAddCustomer: React.FC<ModalData> = ({ closeModal }) => {
+const ModalAddCustomer: React.FC<ModalData> = ({
+  closeModal,
+  setCustomers,
+}) => {
   // eslint-disable-next-line @typescript-eslint/ban-types
   const handleSubmit = useCallback(
     async (data: CustomerData) => {
-      await api.post('customers', data);
+      const response = await api.post('customers', data);
 
+      setCustomers(current => [...current, response.data]);
       closeModal(false);
     },
-    [closeModal],
+    [closeModal, setCustomers],
   );
 
   return (

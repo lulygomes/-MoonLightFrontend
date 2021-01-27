@@ -65,6 +65,7 @@ export const MainHeader = styled.header`
 export const List = styled.div`
   margin: 2rem 0;
   align-self: center;
+  overflow-x: auto;
 
   h2 {
     margin-left: 10px;

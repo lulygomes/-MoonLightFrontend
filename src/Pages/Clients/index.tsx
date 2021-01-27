@@ -60,12 +60,16 @@ const Clients: React.FC = () => {
           </button>
         </MainHeader>
         {isModalAddCustomerOpen && (
-          <ModalAddCustomer closeModal={setIsModalAddCustomerOpen} />
+          <ModalAddCustomer
+            closeModal={setIsModalAddCustomerOpen}
+            setCustomers={setCustomers}
+          />
         )}
         {isModalEditCustomerOpen && (
           <ModalEditCustomer
             customerId={customerIdToEdit}
             closeModal={setIsModalEditCustomerOpen}
+            setCustomers={setCustomers}
           />
         )}
 
