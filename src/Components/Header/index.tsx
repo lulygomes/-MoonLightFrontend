@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import logo from '../../assetes/image/logo.svg';
 
@@ -12,13 +13,16 @@ const Header: React.FC = () => {
       <Nav>
         <ul>
           <li>
-            <a href="/">Vender</a>
+            <Link to="/">Vender</Link>
           </li>
           <li>
-            <a href="/">Caixa</a>
+            <Link to="/">Caixa</Link>
           </li>
           <li>
-            <a href="/">Clientes</a>
+            <Link to="/clients">Clientes</Link>
+          </li>
+          <li>
+            <Link to="/products">Produtos</Link>
           </li>
         </ul>
       </Nav>
